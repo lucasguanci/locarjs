@@ -16,16 +16,16 @@ window.onload = () => {
             });
             box.setAttribute('material', { "color": 'green' } );
             box.setAttribute('gps-new-entity-place', {
-                latitude: 43.879894,
-                longitude: 11.094604
+                latitude: 43.879866212532654,
+                longitude: 11.094446499969672
             });
             const sphere = document.createElement("a-sphere");
             sphere.setAttribute("class","sphere");
             sphere.setAttribute("radius", 10);
             sphere.setAttribute('material', { "color": 'cyan' });
             sphere.setAttribute('gps-new-entity-place', {
-                latitude: e.detail.position.latitude + 0.001,
-                longitude: e.detail.position.longitude
+                latitude: 43.87976445800282,
+                longitude: 11.094337367967924
             });
             sphere.setAttribute("position", "300 100 200")
             document.querySelector("a-scene").appendChild(box);
