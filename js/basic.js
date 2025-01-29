@@ -21,7 +21,7 @@ window.onload = () => {
             });
             const sphere = document.createElement("a-sphere");
             sphere.setAttribute("class","sphere");
-            sphere.setAttribute("radius", 10);
+            sphere.setAttribute("radius", 5);
             sphere.setAttribute('material', { "color": 'cyan' });
             sphere.setAttribute('gps-new-entity-place', {
                 latitude: 43.87976445800282,
