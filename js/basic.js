@@ -10,15 +10,14 @@ window.onload = () => {
             const box = document.createElement("a-box");
             box.setAttribute('class','box');
             box.setAttribute("geometry", {
-                "width": 100, 
-                "height": 50,
-                "depth": 17
+                "width": 5, 
+                "height": 5,
+                "depth": 2
             });
             box.setAttribute('material', { "color": 'green' } );
             box.setAttribute('gps-new-entity-place', {
-                latitude: 43.879755,
-                longitude: 11.094394,
-                position: '0 5 10' // added some elevation
+                latitude: 43.879894,
+                longitude: 11.094604
             });
             const sphere = document.createElement("a-sphere");
             sphere.setAttribute("class","sphere");
