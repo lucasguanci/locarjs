@@ -16,8 +16,8 @@ window.onload = () => {
             });
             box.setAttribute('material', { "color": 'green' } );
             box.setAttribute('gps-new-entity-place', {
-                latitude: e.detail.position.latitude + 0.001,
-                longitude: e.detail.position.longitude,
+                latitude: 43.879755,
+                longitude: 11.094394,
                 position: '0 5 10' // added some elevation
             });
             const sphere = document.createElement("a-sphere");
