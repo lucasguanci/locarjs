@@ -16,7 +16,8 @@ window.onload = () => {
             entity.setAttribute('material', { color: 'red' } );
             entity.setAttribute('gps-new-entity-place', {
                 latitude: e.detail.position.latitude + 0.001,
-                longitude: e.detail.position.longitude
+                longitude: e.detail.position.longitude,
+                position: '0 5 10' // added some elevation
             });
             document.querySelector("a-scene").appendChild(entity);
         }
