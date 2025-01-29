@@ -27,7 +27,6 @@ window.onload = () => {
                 latitude: 43.87976445800282,
                 longitude: 11.094337367967924
             });
-            sphere.setAttribute("position", "300 100 200")
             document.querySelector("a-scene").appendChild(box);
             document.querySelector("a-scene").appendChild(sphere);
         }
