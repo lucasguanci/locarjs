@@ -7,12 +7,17 @@ import * as LocAR from 'locar';
 
 // global variables
 var scene, camera, renderer;
-var locar, cam;
+var locar, cam, deviceOrientationControls;
 var box, cube;
 
 window.onload = (e) => {
-    console.log("page loaded, proceed to init");
+  console.log("page loaded, proceed to init");
+  const overlay = document.getElementById("overlay");
+  const startBtn = document.getElementById("btnStart");
+  startBtn.addEventListener('click', function(e) {
+    document.body.removeChild(overlay);
     init();
+  });
 }
 
 function init() {
@@ -30,6 +35,7 @@ function init() {
 
   locar = new LocAR.LocationBased(scene, camera);
   cam = new LocAR.WebcamRenderer(renderer);
+  deviceOrientationControls = new LocAR.DeviceOrientationControls(camera);
 
   let firstLocation = true;
   locar.on("gpsupdate", (pos, distMoved) => {
@@ -50,5 +56,6 @@ function init() {
 
 function animate() {
   cam.update();
+  deviceOrientationControls.update();
   renderer.render(scene, camera);
 }
