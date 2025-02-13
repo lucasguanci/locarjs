@@ -6,17 +6,14 @@ import * as THREE from 'three';
 import * as LocAR from 'locar';
 
 // global variables
-var scene, camera, renderer, deviceOrientationControls;
+var scene, camera, renderer;
 var locar, cam;
 var box, cube;
 
-// button to use on iOS 13+ to enable deviceOrientationControls
-const overlay = document.getElementById("overlay")
-const startBtn = document.getElementById("startBtn");
-startBtn.addEventListener('click', e => {
-  document.body.removeChild(overlay);
-  init();
-});
+window.onload = (e) => {
+    console.log("page loaded, proceed to init");
+    init();
+}
 
 function init() {
   scene = new THREE.Scene();
@@ -35,10 +32,6 @@ function init() {
   cam = new LocAR.WebcamRenderer(renderer);
 
   let firstLocation = true;
-
-  // Create the device orientation tracker
-  deviceOrientationControls = new LocAR.DeviceOrientationControls(camera);
-
   locar.on("gpsupdate", (pos, distMoved) => {
     if (firstLocation) {
       alert(`Got the initial location: longitude ${pos.coords.longitude}, latitude ${pos.coords.latitude}`);
@@ -49,23 +42,13 @@ function init() {
       firstLocation = false;
     }
   });
-  // use fake GPS
-  // locar.fakeGps(-0.72, 51.05);
-  // locar.add(cube, -0.72, 51.0501);
 
   locar.startGps();
 
   renderer.setAnimationLoop(animate);    
 }
 
-
 function animate() {
   cam.update();
-  // Update the scene using the latest sensor readings
-  deviceOrientationControls.update();
   renderer.render(scene, camera);
 }
-
-
-
-// 11.094534, 43.879913
