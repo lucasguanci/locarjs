@@ -172,7 +172,7 @@ import * as LocAR from 'locar';
 // global variables
 var scene, camera, renderer;
 var locar, cam, absoluteDeviceOrientationControls;
-var box, cube;
+var box, cube1, cube2;
 
 window.onload = (e) => {
   console.log("page loaded, proceed to init");
