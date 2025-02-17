@@ -206,9 +206,10 @@ function init() {
     if (firstLocation) {
       alert(`Got the initial location: longitude ${pos.coords.longitude}, latitude ${pos.coords.latitude}`);
       box = new THREE.BoxGeometry(2,2,2);
-      cube = new THREE.Mesh(box, new THREE.MeshBasicMaterial({ color: 0xff0000 }));
-      locar.add(cube, 11.094534, 43.879913);
-      locar.add(cube, 11.272785, 43.763123);
+      cube1 = new THREE.Mesh(box, new THREE.MeshBasicMaterial({ color: 0xff0000 }));
+      cube2 = new THREE.Mesh(box, new THREE.MeshBasicMaterial({ color: 0xff0000 }));
+      locar.add(cube1, 11.094534, 43.879913);
+      locar.add(cube2, 11.272785, 43.763123);
       firstLocation = false;
     }
   });
