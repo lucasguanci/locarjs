@@ -208,7 +208,7 @@ function init() {
       box = new THREE.BoxGeometry(2,2,2);
       cube = new THREE.Mesh(box, new THREE.MeshBasicMaterial({ color: 0xff0000 }));
       locar.add(cube, 11.094534, 43.879913);
-
+      locar.add(cube, 11.272785, 43.763123);
       firstLocation = false;
     }
   });
