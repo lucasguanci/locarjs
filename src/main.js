@@ -207,9 +207,16 @@ function init() {
       alert(`Got the initial location: longitude ${pos.coords.longitude}, latitude ${pos.coords.latitude}`);
       box = new THREE.BoxGeometry(2,2,2);
       cube1 = new THREE.Mesh(box, new THREE.MeshBasicMaterial({ color: 0xff0000 }));
-      cube2 = new THREE.Mesh(box, new THREE.MeshBasicMaterial({ color: 0xff0000 }));
+      // cube2 = new THREE.Mesh(box, new THREE.MeshBasicMaterial({ color: 0xff0000 }));
       locar.add(cube1, 11.094534, 43.879913);
-      locar.add(cube2, 11.272785, 43.763123);
+      // locar.add(cube2, 11.272785, 43.763123);
+      // piazza duomo
+      const geometry = new THREE.ConeGeometry( 5, 20, 32 ); 
+      const material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+      const cone = new THREE.Mesh(geometry, material ); 
+      // fontana piazza stazione 43.878075, 11.108208
+      locar.add(cone, 11.108208, 43.878075);
+      // fontana papero 43.882254, 11.097431
       firstLocation = false;
     }
   });
