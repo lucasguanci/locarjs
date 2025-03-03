@@ -7,6 +7,9 @@
  * for calling this.connect()
 **/
 import * as THREE from 'three';
+/** import GLTF model **/
+import {GLTFLoader} from '../node_modules/three/examples/jsm/loaders/GLTFLoader.js';
+
 const isIOS = navigator.userAgent.match(/iPhone|iPad|iPod/i)
 
 /**
@@ -201,6 +204,10 @@ function init() {
   cam = new LocAR.WebcamRenderer(renderer);
   absoluteDeviceOrientationControls = new AbsoluteDeviceOrientationControls(camera);
 
+  /** import flag model **/
+  const gltfLoader = new GLTFLoader();
+  const url = '../public/flag.glb';
+
   let firstLocation = true;
   locar.on("gpsupdate", (pos, distMoved) => {
     if (firstLocation) {
@@ -217,6 +224,12 @@ function init() {
       // fontana piazza stazione 43.878075, 11.108208
       locar.add(cone, 11.108208, 43.878075);
       // fontana papero 43.882254, 11.097431
+      // GLTF flag model
+      gltfLoader.load(url, (gltf) => {
+        const mesh = gltf.scene.children[0];
+        console.log(mesh);
+        locar.add(mesh, 11.094634, 43.879713)
+      });
       firstLocation = false;
     }
   });
