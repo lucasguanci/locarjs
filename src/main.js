@@ -9,6 +9,8 @@
 import * as THREE from 'three';
 /** import GLTF model **/
 import {GLTFLoader} from '../node_modules/three/examples/jsm/loaders/GLTFLoader.js';
+import {DRACOLoader} from '../node_modules/three/examples/jsm/loaders/DRACOLoader.js';
+
 
 const isIOS = navigator.userAgent.match(/iPhone|iPad|iPod/i)
 
@@ -204,18 +206,34 @@ function init() {
   cam = new LocAR.WebcamRenderer(renderer);
   absoluteDeviceOrientationControls = new AbsoluteDeviceOrientationControls(camera);
 
+  /* light */
+  let ambientLight = new THREE.AmbientLight(new THREE.Color('hsl(0, 0%, 100%)'), 0.75);
+  scene.add(ambientLight);
+
+  let directionalLightBack = new THREE.DirectionalLight(new THREE.Color('hsl(0, 0%, 100%)'), 0.25);
+  directionalLightBack.position.set(30, 100, 100);
+  scene.add(directionalLightBack);
+
+  let directionalLightFront = new THREE.DirectionalLight(new THREE.Color('hsl(0, 0%, 100%)'), 0.25);
+  directionalLightFront.position.set(-30, 100, -100);
+  scene.add(directionalLightFront);
+
   /** import flag model **/
   const gltfLoader = new GLTFLoader();
   const url = '../public/flag.glb';
+  // DRACOLoader
+  const dracoLoader = new DRACOLoader();
+  dracoLoader.setDecoderPath('/examples/jsm/libs/draco/');
+  gltfLoader.setDRACOLoader(dracoLoader);
 
   let firstLocation = true;
   locar.on("gpsupdate", (pos, distMoved) => {
     if (firstLocation) {
-      alert(`Got the initial location: longitude ${pos.coords.longitude}, latitude ${pos.coords.latitude}`);
+      // alert(`Got the initial location: longitude ${pos.coords.longitude}, latitude ${pos.coords.latitude}`);
       box = new THREE.BoxGeometry(2,2,2);
-      cube1 = new THREE.Mesh(box, new THREE.MeshBasicMaterial({ color: 0xff0000 }));
-      // cube2 = new THREE.Mesh(box, new THREE.MeshBasicMaterial({ color: 0xff0000 }));
-      locar.add(cube1, 11.094534, 43.879913);
+      // cubo aiale museo calcolatore
+      // cube1 = new THREE.Mesh(box, new THREE.MeshBasicMaterial({ color: 0xff0000 }));
+      // locar.add(cube1, 11.094534, 43.879913);
       // locar.add(cube2, 11.272785, 43.763123);
       // piazza duomo
       const geometry = new THREE.ConeGeometry( 5, 20, 32 ); 
@@ -226,9 +244,11 @@ function init() {
       // fontana papero 43.882254, 11.097431
       // GLTF flag model
       gltfLoader.load(url, (gltf) => {
-        const mesh = gltf.scene.children[0];
-        console.log(mesh);
-        locar.add(mesh, 11.094634, 43.879713)
+        // const mesh = gltf.scene.children[0];
+        // console.log(mesh);
+        locar.add(gltf.scene, 11.094534, 43.879913);
+        // scene.add(gltf.scene);
+
       });
       firstLocation = false;
     }
