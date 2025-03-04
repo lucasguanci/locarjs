@@ -220,7 +220,7 @@ function init() {
 
   /** import flag model **/
   const gltfLoader = new GLTFLoader();
-  const url = '../public/flag.glb';
+  const url = '/flag.glb';
   // DRACOLoader
   const dracoLoader = new DRACOLoader();
   dracoLoader.setDecoderPath('/examples/jsm/libs/draco/');
