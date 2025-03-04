@@ -178,6 +178,8 @@ import * as LocAR from 'locar';
 var scene, camera, renderer;
 var locar, cam, absoluteDeviceOrientationControls;
 var box, cube1, cube2;
+var mixer;
+const clock = new THREE.Clock();
 
 window.onload = (e) => {
   console.log("page loaded, proceed to init");
@@ -242,12 +244,13 @@ function init() {
       // fontana piazza stazione 43.878075, 11.108208
       locar.add(cone, 11.108208, 43.878075);
       // fontana papero 43.882254, 11.097431
+      
       // GLTF flag model
       gltfLoader.load(url, (gltf) => {
-        // const mesh = gltf.scene.children[0];
-        // console.log(mesh);
         locar.add(gltf.scene, 11.094534, 43.879913);
-        // scene.add(gltf.scene);
+        mixer = new THREE.AnimationMixer(gltf.scene);
+        const action = mixer.clipAction(gltf.animations[0]);
+        action.play();
 
       });
       firstLocation = false;
@@ -262,5 +265,8 @@ function init() {
 function animate() {
   cam.update();
   absoluteDeviceOrientationControls.update();
+  if (mixer) {
+    mixer.update(clock.getDelta());
+  }
   renderer.render(scene, camera);
 }
