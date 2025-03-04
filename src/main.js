@@ -209,14 +209,14 @@ function init() {
   absoluteDeviceOrientationControls = new AbsoluteDeviceOrientationControls(camera);
 
   /* light */
-  let ambientLight = new THREE.AmbientLight(new THREE.Color('hsl(0, 0%, 100%)'), 0.75);
+  let ambientLight = new THREE.AmbientLight(new THREE.Color('hsl(0, 0%, 100%)'), 1.);
   scene.add(ambientLight);
 
-  let directionalLightBack = new THREE.DirectionalLight(new THREE.Color('hsl(0, 0%, 100%)'), 0.25);
+  let directionalLightBack = new THREE.DirectionalLight(new THREE.Color('hsl(0, 0%, 100%)'), 0.50);
   directionalLightBack.position.set(30, 100, 100);
   scene.add(directionalLightBack);
 
-  let directionalLightFront = new THREE.DirectionalLight(new THREE.Color('hsl(0, 0%, 100%)'), 0.25);
+  let directionalLightFront = new THREE.DirectionalLight(new THREE.Color('hsl(0, 0%, 100%)'), 0.50);
   directionalLightFront.position.set(-30, 100, -100);
   scene.add(directionalLightFront);
 
@@ -247,6 +247,7 @@ function init() {
       
       // GLTF flag model
       gltfLoader.load(url, (gltf) => {
+        gltf.scene.scale.set(2, 2, 2); 
         locar.add(gltf.scene, 11.094534, 43.879913);
         mixer = new THREE.AnimationMixer(gltf.scene);
         const action = mixer.clipAction(gltf.animations[0]);
