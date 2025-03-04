@@ -7,4 +7,4 @@ I started from LocAR.js Tutorial - Part 2 that has been modified to enable devic
 
 The model displays an animated flag imported as a glb file.
 
-A demo version is available [https://www.idrovolante.org/demo/AR](here).
+A demo version is available at https://www.idrovolante.org/demo/AR
