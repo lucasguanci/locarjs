@@ -248,7 +248,11 @@ function init() {
       // GLTF flag model
       gltfLoader.load(url, (gltf) => {
         gltf.scene.scale.set(2, 2, 2); 
-        locar.add(gltf.scene, 11.094534, 43.879913);
+        // fondino (11.094534, 43.879913)
+        // suddcobas
+        let lng = 11.095847; 
+        let lat = 43.878694;
+        locar.add(gltf.scene, lng, lat);
         mixer = new THREE.AnimationMixer(gltf.scene);
         const action = mixer.clipAction(gltf.animations[0]);
         action.play();
